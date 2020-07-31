@@ -1,3 +1,9 @@
+# Sessions
+/sessions
+
+# Cookie File
+cookie-file.txt
+
 # Logs
 logs
 *.log
