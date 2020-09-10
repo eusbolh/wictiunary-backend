@@ -22,10 +22,6 @@ connection.once('open', () => {
 /* Get db models */
 const User = require('./models/user.model');
 
-const users = [
-  { id: '2f24vvg', email: 'test@test.com', password: 'password' },
-];
-
 // configure passport.js to use the local strategy
 passport.use(new LocalStrategy(
   { usernameField: 'email' },
@@ -108,6 +104,47 @@ app.get('/login', (req, res) => {
   res.send('i guess it should be the login page!\n');
 });
 
+app.post('/register', (req, res, next) => {
+  const { email, password } = req.body;
+
+  let encryptedPassword;
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(password, salt, null, (err, hash) => {
+      if (!err) {
+        encryptedPassword = hash;
+
+        const user = new User({
+          email,
+          password: encryptedPassword,
+        });
+
+        user
+          .save()
+          .then(() => {
+            res.json("User registered!");
+          })
+          .catch((err) => {
+            res.status(400).json("Error: ", err);
+          });
+      }
+    });
+  });
+
+  /*
+  
+  // todo: check arguments
+
+  user
+    .save()
+    .then(() => {
+      res.json('User registered!');
+    })
+    .catch((err) => {
+      res.status(400).json('Error: ', err);
+    });
+    */
+})
+
 app.post('/login', (req, res, next) => {
   console.log('Inside POST /login callback function');
   passport.authenticate('local', (error, user, info) => {
@@ -129,23 +166,8 @@ app.post('/login', (req, res, next) => {
       if (error) {
         return next(error);
       }
-      return res.redirect('/authrequired'); // TODO: return proper http response
+      return res.send(`${JSON.stringify(user)}\n`); // TODO: return proper http response (remove password from the object)
     });
-  })(req, res, next);
-});
-
-app.post('/login', (req, res, next) => {
-  console.log('Inside POST /login callback')
-  passport.authenticate('local', (err, user, info) => {
-    console.log('Inside passport.authenticate() callback');
-    console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-    console.log(`req.user: ${JSON.stringify(req.user)}`)
-    req.login(user, (err) => {
-      console.log('Inside req.login() callback')
-      console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-      console.log(`req.user: ${JSON.stringify(req.user)}`)
-      return res.send('You were authenticated & logged in!\n');
-    })
   })(req, res, next);
 });
 
