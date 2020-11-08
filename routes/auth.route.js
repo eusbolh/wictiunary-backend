@@ -62,11 +62,21 @@ router.route("/register").post((req, res, next) => {
   });
 });
 
-router.route("/test").get((req, res) => {
+router.route("/me").get((req, res) => {
   if (req.isAuthenticated()) {
-    res.status(200).send("User is authenticated.");
+    const { user } = req;
+    if (user) {
+      const { email, createdAt, updatedAt } = user;
+      // TODO: write a util for property picker
+      res.status(200).send({
+        email,
+        createdAt,
+        updatedAt,
+      });
+    }
+    // TODO: check if it is possible that code reaches here
   } else {
-    res.status(401).send("User is not authenticated.");
+    res.status(401).send();
   }
 });
 
