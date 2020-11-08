@@ -103,6 +103,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  // TODO: do authentication check here
+  console.log("Custom middleware: ", req.path);
+  next();
+});
+
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to Wictiunary!");
 });
