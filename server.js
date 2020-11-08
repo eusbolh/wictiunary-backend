@@ -109,72 +109,8 @@ app.get("/", (req, res) => {
 
 /* login routes */
 
-app.post("/register", (req, res, next) => {
-  const { email, password } = req.body;
-
-  let encryptedPassword;
-  bcrypt.genSalt(10, function (err, salt) {
-    bcrypt.hash(password, salt, null, (err, hash) => {
-      if (!err) {
-        encryptedPassword = hash;
-
-        const user = new User({
-          email,
-          password: encryptedPassword,
-        });
-
-        user
-          .save()
-          .then(() => {
-            res.json("User registered!");
-          })
-          .catch((err) => {
-            res.status(400).json("Error: ", err);
-          });
-      }
-    });
-  });
-});
-
-app.post("/login", (req, res, next) => {
-  console.log("Inside POST /login callback function");
-  passport.authenticate("local", (error, user, info) => {
-    console.log("Inside passport.authenticate() callback");
-    console.log(
-      `req.session.passport: ${JSON.stringify(req.session.passport)}`
-    );
-    console.log(`req.user: ${JSON.stringify(req.user)}`);
-
-    console.log(error, user, info);
-
-    if (info) {
-      return res.send(info && info.message); // TODO: return proper http response
-    }
-    if (error) {
-      return next(error);
-    }
-    if (!user) {
-      return res.redirect("/login"); // TODO: return proper http response
-    }
-
-    req.login(user, (error) => {
-      if (error) {
-        return next(error);
-      }
-      return res.send(`${JSON.stringify(user)}\n`); // TODO: return proper http response (remove password from the object)
-    });
-  })(req, res, next);
-});
-
-app.get("/authrequired", (req, res) => {
-  console.log("Inside GET /authrequired callback");
-  console.log(`User authenticated? ${req.isAuthenticated()}`);
-  if (req.isAuthenticated()) {
-    res.send("you hit the authentication endpoint\n");
-  } else {
-    res.status(401).send();
-  }
-});
+const authRouter = require("./routes/auth.route");
+app.use("/auth", authRouter);
 
 /* start listening port */
 
