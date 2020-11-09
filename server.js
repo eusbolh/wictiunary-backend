@@ -118,6 +118,9 @@ app.get("/", (req, res) => {
 const authRouter = require("./routes/auth.route");
 app.use("/auth", authRouter);
 
+const dictRouter = require("./routes/dict.route");
+app.use("/dict", dictRouter);
+
 /* start listening port */
 
 app.listen(port, () => {
