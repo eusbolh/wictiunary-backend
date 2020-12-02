@@ -5,6 +5,8 @@ const bcrypt = require("bcrypt-nodejs");
 
 const User = require("../models/user.model");
 
+const ObjectUtil = require("../common/utils/ObjectUtil");
+
 router.route("/login").post((req, res, next) => {
   console.log("Inside POST /login callback function");
   passport.authenticate("local", (error, user, info) => {
@@ -30,7 +32,14 @@ router.route("/login").post((req, res, next) => {
       if (error) {
         return next(error);
       }
-      return res.send(`${JSON.stringify(user)}\n`); // TODO: return proper http response (remove password from the object)
+
+      const filteredUserObj = ObjectUtil.pick(user.toJSON(), [
+        "email",
+        "createdAt",
+        "updatedAt",
+      ]);
+
+      return res.send(filteredUserObj);
     });
   })(req, res, next);
 });
