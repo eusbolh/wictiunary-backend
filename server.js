@@ -103,6 +103,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+const ensureLoggedIn = require("./middlewares/ensureLoggedIn.middleware");
+app.use(ensureLoggedIn);
+
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to Wictiunary!");
 });
