@@ -9,8 +9,9 @@ const ObjectUtil = require("../common/utils/ObjectUtil");
 const {
   BCRYPT_GEN_SALT_ROUNDS,
 } = require("../common/constants/auth.constants");
+const paths = require("./paths");
 
-router.route("/login").post((req, res, next) => {
+router.route(paths.AUTH_LOGIN.path).post((req, res, next) => {
   passport.authenticate("local", (error, user, info) => {
     if (info) {
       return res.send(info && info.message); // TODO: return proper http response
@@ -18,27 +19,18 @@ router.route("/login").post((req, res, next) => {
     if (error) {
       return next(error);
     }
-    if (!user) {
-      return res.redirect("/login"); // TODO: return proper http response
-    }
 
     req.login(user, (error) => {
       if (error) {
         return next(error);
       }
 
-      const filteredUserObj = ObjectUtil.pick(user.toJSON(), [
-        "email",
-        "createdAt",
-        "updatedAt",
-      ]);
-
-      return res.send(filteredUserObj);
+      return res.status(200).send();
     });
   })(req, res, next);
 });
 
-router.route("/register").post((req, res, next) => {
+router.route(paths.AUTH_REGISTER.path).post((req, res, next) => {
   const { email, password } = req.body;
 
   bcrypt.genSalt(BCRYPT_GEN_SALT_ROUNDS, function (err, salt) {
@@ -64,17 +56,16 @@ router.route("/register").post((req, res, next) => {
   });
 });
 
-router.route("/me").get((req, res) => {
+router.route(paths.AUTH_ME.path).get((req, res) => {
   const { user } = req;
-  if (user) {
-    const { email, createdAt, updatedAt } = user;
-    // TODO: write a util for property picker
-    res.status(200).send({
-      email,
-      createdAt,
-      updatedAt,
-    });
-  }
+
+  const filteredUserObj = ObjectUtil.pick(user.toJSON(), [
+    "email",
+    "createdAt",
+    "updatedAt",
+  ]);
+
+  return res.send(filteredUserObj);
 });
 
 module.exports = router;
