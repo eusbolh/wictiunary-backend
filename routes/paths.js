@@ -1,4 +1,5 @@
 module.exports = {
+  // Auth Paths
   AUTH_LOGIN: {
     fullPath: "/auth/login",
     path: "/login",
@@ -13,5 +14,16 @@ module.exports = {
     fullPath: "/auth/register",
     path: "/register",
     ensureLoggedIn: false,
+  },
+  // Dict Paths
+  DICT_DEFINITION: {
+    fullPath: "/dict/definition",
+    path: "/definition",
+    ensureLoggedIn: true,
+  },
+  DICT_SEARCH: {
+    fullPath: "/dict/search",
+    path: "/search",
+    ensureLoggedIn: true,
   },
 };
