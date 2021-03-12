@@ -1,0 +1,43 @@
+2021-03-08 22:28:50 info: 🚀 App listening on the port 3000
+2021-03-08 22:28:50 error: 🔴 Unable to connect to the database: MongoParseError: Invalid connection string.
+2021-03-08 22:29:09 info: 🚀 App listening on the port 3000
+2021-03-08 22:29:12 error: 🔴 Unable to connect to the database: MongoError: Authentication failed..
+2021-03-08 22:30:04 info: 🚀 App listening on the port 3000
+2021-03-08 22:30:06 info: 🟢 The database is connected.
+2021-03-08 22:30:34 info: 🚀 App listening on the port 3000
+2021-03-08 22:30:35 info: 🟢 The database is connected.
+2021-03-08 22:31:04 info: 🚀 App listening on the port 3000
+2021-03-08 22:31:05 info: 🟢 The database is connected.
+2021-03-08 22:33:53 info: 🚀 App listening on the port 3000
+2021-03-08 22:33:57 info: 🟢 The database is connected.
+2021-03-08 22:34:32 info: 🚀 App listening on the port 3000
+2021-03-08 22:34:33 error: 🔴 Unable to connect to the database: MongoError: Authentication failed..
+2021-03-08 22:34:55 info: 🚀 App listening on the port 3000
+2021-03-08 22:35:01 info: 🟢 The database is connected.
+2021-03-08 22:43:41 info: 🚀 App listening on the port 3000
+2021-03-08 22:43:42 info: 🟢 The database is connected.
+2021-03-08 22:44:22 info: 🚀 App listening on the port 3000
+2021-03-08 22:44:23 info: 🟢 The database is connected.
+2021-03-08 22:44:32 info: [0mPOST /signup [32m201[0m 1115.530 ms - 168[0m
+2021-03-08 22:45:18 info: [0mPOST / [33m404[0m 2.326 ms - 140[0m
+2021-03-08 22:45:41 info: [0mGET / [32m200[0m 3.042 ms - 2[0m
+2021-03-08 22:46:21 info: [0mGET /users [32m200[0m 129.411 ms - 171[0m
+2021-03-08 22:47:18 info: [0mGET /users/60467ea04525cf0215914f35 [32m200[0m 160.448 ms - 169[0m
+2021-03-08 22:48:16 info: 🚀 App listening on the port 3000
+2021-03-08 22:48:17 info: 🟢 The database is connected.
+2021-03-08 22:49:41 info: [0mPUT /users/60467ea04525cf0215914f35 [32m200[0m 165.693 ms - 169[0m
+2021-03-08 22:49:47 info: [0mGET /users/60467ea04525cf0215914f35 [32m200[0m 81.422 ms - 174[0m
+2021-03-08 22:50:16 info: [0mDELETE /users/60467ea04525cf0215914f35 [32m200[0m 74.802 ms - 174[0m
+2021-03-08 22:50:19 error: StatusCode : 409, Message : You're not user
+2021-03-08 22:50:19 info: [0mGET /users/60467ea04525cf0215914f35 [33m409[0m 70.486 ms - 29[0m
+2021-03-08 22:50:30 info: [0mPOST /signup [32m201[0m 220.159 ms - 168[0m
+2021-03-08 22:50:33 error: StatusCode : 409, Message : You're not user
+2021-03-08 22:50:33 info: [0mGET /users/60467ea04525cf0215914f35 [33m409[0m 67.927 ms - 29[0m
+2021-03-08 22:50:36 info: [0mGET /users [32m200[0m 226.604 ms - 171[0m
+2021-03-08 22:50:53 info: [0mGET /users/60468006b6e3a602255739df [32m200[0m 254.688 ms - 169[0m
+2021-03-08 22:51:00 info: [0mPUT /users/ [33m404[0m 1.303 ms - 145[0m
+2021-03-08 22:51:05 info: [0mPUT /users/60468006b6e3a602255739df [32m200[0m 161.223 ms - 169[0m
+2021-03-08 22:51:12 info: [0mDELETE /users/60468006b6e3a602255739df [32m200[0m 74.282 ms - 174[0m
+2021-03-08 22:51:16 info: [0mGET /users [32m200[0m 88.552 ms - 31[0m
+2021-03-08 22:51:22 error: StatusCode : 409, Message : You're not user
+2021-03-08 22:51:22 info: [0mGET /users/60468006b6e3a602255739df [33m409[0m 254.025 ms - 29[0m

@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/mnt/c/Users/cuney/Desktop/code/typescript-express/src/logs/error/.9b8877a6df62b1c12f12c5ec90c764b7ef10f68b-audit.json",
+    "files": [
+        {
+            "date": 1615231659401,
+            "name": "/mnt/c/Users/cuney/Desktop/code/typescript-express/src/logs/error/2021-03-08.error.log",
+            "hash": "8701a7da43a93f9450b4b21c18e54ada"
+        }
+    ]
+}

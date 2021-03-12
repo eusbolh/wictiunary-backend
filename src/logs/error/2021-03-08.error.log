@@ -1,0 +1,6 @@
+2021-03-08 22:28:50 error: 🔴 Unable to connect to the database: MongoParseError: Invalid connection string.
+2021-03-08 22:29:12 error: 🔴 Unable to connect to the database: MongoError: Authentication failed..
+2021-03-08 22:34:33 error: 🔴 Unable to connect to the database: MongoError: Authentication failed..
+2021-03-08 22:50:19 error: StatusCode : 409, Message : You're not user
+2021-03-08 22:50:33 error: StatusCode : 409, Message : You're not user
+2021-03-08 22:51:22 error: StatusCode : 409, Message : You're not user
