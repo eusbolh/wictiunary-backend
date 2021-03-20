@@ -1,11 +1,12 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
 import { WordDto } from '../dtos/dict.dto';
+import { RequestWithUser } from '../interfaces/auth.interface';
 import DictService from '../services/dict.service';
 
 class DictController {
   public dictService = new DictService();
 
-  public getWordDefinition = async (req: Request, res: Response, next: NextFunction) => {
+  public getWordDefinition = async (req: RequestWithUser, res: Response, next: NextFunction) => {
     const wordData: WordDto = req.body;
 
     try {
@@ -16,7 +17,7 @@ class DictController {
     }
   };
 
-  public searchWord = async (req: Request, res: Response, next: NextFunction) => {
+  public searchWord = async (req: RequestWithUser, res: Response, next: NextFunction) => {
     const wordData: WordDto = req.body;
 
     try {

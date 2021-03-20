@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import DictController from '../controllers/dict.controller';
 import Route from '../interfaces/routes.interface';
+import authMiddleware from '../middlewares/auth.middleware';
 
 class DictRoute implements Route {
   public path = '/dict';
@@ -12,8 +13,8 @@ class DictRoute implements Route {
   }
 
   private initializeRoutes() {
-    this.router.post(`${this.path}/search`, this.dictController.searchWord);
-    this.router.post(`${this.path}/definition`, this.dictController.getWordDefinition);
+    this.router.post(`${this.path}/search`, authMiddleware, this.dictController.searchWord);
+    this.router.post(`${this.path}/definition`, authMiddleware, this.dictController.getWordDefinition);
   }
 }
 
