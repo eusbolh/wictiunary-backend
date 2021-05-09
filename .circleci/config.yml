@@ -1,16 +1,12 @@
-version: '2.1'
+version: 2.1
 orbs:
   node: circleci/node@4.3.0
 jobs:
-  install-node-example:
+  build:
     docker:
-      - image: 'node:14'
+      - image: circleci/node:fermium
     steps:
       - checkout
-      - node/install:
-          install-yarn: true
+      - run: npm install
+      - run: npm run check:style
       - run: node --version
-workflows:
-  test_my_app:
-    jobs:
-      - install-node-example
