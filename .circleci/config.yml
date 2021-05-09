@@ -2,11 +2,14 @@ version: 2.1
 orbs:
   node: circleci/node@4.3.0
 jobs:
-  build:
+  check-style:
     docker:
       - image: circleci/node:fermium
     steps:
       - checkout
       - run: npm install
       - run: npm run check:style
-      - run: node --version
+workflows:
+  review:
+    jobs:
+      - check-style
