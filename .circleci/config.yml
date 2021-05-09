@@ -1,14 +1,16 @@
-version: 2.1
+version: '2.1'
 orbs:
   node: circleci/node@4.3.0
 jobs:
-  build:
-    executor:
-      name: node/default
-      tag: '12.8.3'
+  install-node-example:
+    docker:
+      - image: 'node:14'
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-      - run: npm run check:style
+      - node/install:
+          install-yarn: true
+      - run: node --version
+workflows:
+  test_my_app:
+    jobs:
+      - install-node-example
