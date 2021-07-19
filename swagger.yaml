@@ -4,7 +4,22 @@ tags:
 
 paths:
   # [POST] Sign Up
-  /signup:
+  /auth/signup:
+    post:
+      tags:
+      - Auth
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/AuthData'
+      responses:
+        201:
+          schema:
+            $ref: '#/definitions/UserData'
+  # [POST] Login
+  /auth/login:
     post:
       tags:
       - Auth
@@ -18,18 +33,20 @@ paths:
         200:
           schema:
             $ref: '#/definitions/UserData'
-
-  # [POST] Login
-  /login:
+  # [POST] Logout
+  /auth/logout:
     post:
       tags:
       - Auth
-      parameters:
-      - name: body
-        in: body
-        required: true
-        schema:
-          $ref: '#/definitions/AuthData'
+      responses:
+        200:
+          schema:
+            $ref: '#/definitions/UserData'
+  # [POST] Me
+  /auth/me:
+    get:
+      tags:
+      - Auth
       responses:
         200:
           schema:
