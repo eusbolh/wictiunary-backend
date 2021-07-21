@@ -1,3 +1,5 @@
+openapi: 3.0.27
+
 tags:
 - name: Auth
   description: Auth API
