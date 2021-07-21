@@ -1,96 +1,114 @@
-openapi: 3.0.27
+openapi: 3.0.0
+
+info:
+  version: 1.1.1
+  title: Wictiunary API
 
 tags:
 - name: Auth
   description: Auth API
 
 paths:
-  # [POST] Sign Up
-  /auth/signup:
+  # [POST] Register
+  /auth/register:
     post:
       tags:
       - Auth
-      parameters:
-      - name: body
-        in: body
+      operationId: register
+      requestBody:
         required: true
-        schema:
-          $ref: '#/definitions/AuthData'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthData'
       responses:
         201:
-          schema:
-            $ref: '#/definitions/UserData'
+          description: 'User is created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
   # [POST] Login
   /auth/login:
     post:
       tags:
       - Auth
-      parameters:
-      - name: body
-        in: body
+      operationId: login
+      requestBody:
         required: true
-        schema:
-          $ref: '#/definitions/AuthData'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthData'
       responses:
         200:
-          schema:
-            $ref: '#/definitions/UserData'
+          description: 'User is logged in'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
   # [POST] Logout
   /auth/logout:
     post:
       tags:
       - Auth
+      operationId: logout
       responses:
         200:
-          schema:
-            $ref: '#/definitions/UserData'
-  # [POST] Me
+          description: 'User is logged out'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+  # [GET] Me
   /auth/me:
     get:
       tags:
       - Auth
+      operationId: me
       responses:
         200:
-          schema:
-            $ref: '#/definitions/UserData'
+          description: 'User data is found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
 
 # definitions
-definitions:
-  AuthData:
-    type: object
-    required:
-      - email
-      - password
-    properties:
-      email:
-        type: string
-        description: User's email
-      password:
-        type: string
-        description: User's password
-  UserData:
-    type: object
-    required:
-      - data
-    properties:
-      data:
-        type: object
-        required:
-            - _id
-            - email
-            - password
-        properties:
-          _id:
-            type: string
-            description: User's ID
-          email:
-            type: string
-            description: User's Email
-          password:
-            type: string
-            description: User's Password
-      message:
-        type: string
-
-schemes:
- - http
+components:
+  schemas:
+    AuthData:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          description: User's email
+        password:
+          type: string
+          description: User's password
+    UserData:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+              - _id
+              - email
+              - password
+          properties:
+            _id:
+              type: string
+              description: User's ID
+            email:
+              type: string
+              description: User's Email
+            password:
+              type: string
+              description: User's Password
+        message:
+          type: string

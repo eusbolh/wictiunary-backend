@@ -78,13 +78,14 @@ class App {
   }
 
   private initializeSwagger() {
-    const options = {
-      swaggerDefinition: {
+    const options: swaggerJSDoc.OAS3Options = {
+      definition: {
+        components: {},
         info: {
-          title: 'REST API',
-          version: '1.0.0',
-          description: 'Example docs',
+          title: 'Wictiunary API - Development',
+          version: 'dev', // TODO: read version information from package.json
         },
+        openapi: '3.0.27',
       },
       apis: ['swagger.yaml'],
     };
